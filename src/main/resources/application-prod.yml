@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:neonpulse_db}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+springdoc:
+  api-docs:
+    enabled: false # Bloquea la descarga de la especificación técnica
+  swagger-ui:
+    enabled: false # Devuelve 404 ante intentos de acceso a la consola web

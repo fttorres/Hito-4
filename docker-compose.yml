@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: neonpulse-postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: neonpulse_db
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: SecureDevPassword123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

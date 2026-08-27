@@ -1,0 +1,18 @@
+# Target build output
+target/
+src/target/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# macOS metadata
+.DS_Store
+
+# Temporary & Screenshot files
+Captura de pantalla*.png
+*.log

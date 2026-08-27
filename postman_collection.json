@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "b3e34b9d-4e42-4f1a-b333-8a033c4eb3a1",
+    "name": "NeonPulse Ticket Sales API - Hito 4",
+    "description": "Colección Postman para pruebas y auditoría de los endpoints REST del microservicio NeonPulse (Hito 4).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Eventos (/api/v1/events)",
+      "item": [
+        {
+          "name": "1. Listar todos los eventos (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events"]
+            }
+          }
+        },
+        {
+          "name": "2. Crear un nuevo evento (201 Created)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lollapalooza Chile 2026\",\n  \"unitPrice\": 120.00,\n  \"availableStock\": 500\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events"]
+            }
+          }
+        },
+        {
+          "name": "3. Obtener evento por ID (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events/{{eventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events", "{{eventId}}"]
+            }
+          }
+        },
+        {
+          "name": "4. Actualizar evento por ID (200 OK)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lollapalooza Chile 2026 - Edición Especial\",\n  \"unitPrice\": 135.00,\n  \"availableStock\": 450\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events/{{eventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events", "{{eventId}}"]
+            }
+          }
+        },
+        {
+          "name": "5. Eliminar evento por ID (204 No Content)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events/{{eventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events", "{{eventId}}"]
+            }
+          }
+        },
+        {
+          "name": "6. Error: Evento No Encontrado (404 Not Found)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events/EVT-INEXISTENTE",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events", "EVT-INEXISTENTE"]
+            }
+          }
+        },
+        {
+          "name": "7. Error: Validación al crear evento (400 Bad Request)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"unitPrice\": -10.00,\n  \"availableStock\": -5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "events"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Compras (/api/v1/purchases)",
+      "item": [
+        {
+          "name": "1. Registrar compra exitosa (201 Created)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardNumber\": \"4532111122223333\",\n  \"items\": [\n    {\n      \"eventId\": \"{{eventId}}\",\n      \"quantity\": 2,\n      \"unitPrice\": 120.00\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "purchases"]
+            }
+          }
+        },
+        {
+          "name": "2. Error: Stock insuficiente (422 Unprocessable Entity)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardNumber\": \"4532111122223333\",\n  \"items\": [\n    {\n      \"eventId\": \"{{eventId}}\",\n      \"quantity\": 9999,\n      \"unitPrice\": 120.00\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "purchases"]
+            }
+          }
+        },
+        {
+          "name": "3. Error: Validación de compra (400 Bad Request)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardNumber\": \"\",\n  \"items\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "purchases"]
+            }
+          }
+        },
+        {
+          "name": "4. Listar historial de compras (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "purchases"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "eventId",
+      "value": "EVT-001"
+    }
+  ]
+}

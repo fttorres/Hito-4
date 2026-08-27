@@ -1,0 +1,223 @@
+{
+  "info": {
+    "name": "NeonPulse API (Hito 4)",
+    "description": "Colección de pruebas para la API REST de NeonPulse, correspondiente al Hito 4 (Arquitectura Hexagonal, Spring Boot, Postgres y Docker).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cities",
+      "item": [
+        {
+          "name": "Obtener todas las ciudades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Obtener ciudad por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cities/SCL",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cities", "SCL"]
+            }
+          }
+        },
+        {
+          "name": "Crear ciudad",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"SCL\",\n  \"name\": \"Santiago de Chile\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar ciudad",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Santiago Centro\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cities/SCL",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cities", "SCL"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar ciudad",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cities/SCL",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cities", "SCL"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Concerts",
+      "item": [
+        {
+          "name": "Obtener todos los conciertos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/concerts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "concerts"]
+            }
+          }
+        },
+        {
+          "name": "Obtener concierto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/concerts/EVT-888",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "concerts", "EVT-888"]
+            }
+          }
+        },
+        {
+          "name": "Crear concierto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"EVT-888\",\n  \"band\": \"Los Bunkers\",\n  \"date\": \"2026-11-20\",\n  \"status\": \"ACTIVE\",\n  \"totalTickets\": 1000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/concerts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "concerts"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar concierto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"EVT-888\",\n  \"band\": \"Los Bunkers - Gira\",\n  \"date\": \"2026-11-25\",\n  \"status\": \"ACTIVE\",\n  \"totalTickets\": 1500\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/concerts/EVT-888",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "concerts", "EVT-888"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar concierto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/concerts/EVT-888",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "concerts", "EVT-888"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchases",
+      "item": [
+        {
+          "name": "Realizar Compra de Tickets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@neonpulse.com\",\n  \"cardNumber\": \"1234567812345678\",\n  \"items\": [\n    {\n      \"concertId\": \"EVT-888\",\n      \"quantity\": 2\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchases",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "purchases"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
